@@ -67,7 +67,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
       },
       description = "Our online driving school management system helps you manage students, instructors, schedules, and tests seamlessly — whether for theory or practical lessons. Simplify registrations, track progress, and deliver an engaging e-learning experience, all in one platform.",
       ctaText = "Check Schedule",
-      ctaHref = "/",
+      ctaHref = "/student",
       gridOptions,
       ...props
     },
