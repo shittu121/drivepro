@@ -1,12 +1,12 @@
-import { HeroSection } from '@/components/HeroSection'
+import { HeroSection } from '@/components/Student/StudentHeroSection'
+import { checkRole } from '@/lib/checkRole'
 import React from 'react'
 
-const Student = () => {
+export default async function Student() {
+  await checkRole(['student']) 
   return (
     <div>
-        <HeroSection />
+        <HeroSection className='overflow-hidden h-screen' />
     </div>
   )
 }
-
-export default Student

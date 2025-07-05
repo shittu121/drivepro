@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 "use client"
 
 import React, { useEffect, useState } from "react"
@@ -16,10 +17,10 @@ export interface NavItem {
 interface NavBarProps {
   items: NavItem[]
   className?: string
+  activeTab?: string
 }
 
-export function NavBar({ items, className }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name)
+export function NavBar({ items, className, activeTab }: NavBarProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMobile, setIsMobile] = useState(false)
 
@@ -36,7 +37,7 @@ export function NavBar({ items, className }: NavBarProps) {
   return (
     <div
       className={cn(
-        "fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6",
+        "fixed  left-1/2 -translate-x-1/2 z-50 mb-6 pt-6",
         className,
       )}
     >
@@ -50,8 +51,6 @@ export function NavBar({ items, className }: NavBarProps) {
               <button
                 key={item.name}
                 onClick={(e) => {
-                  setActiveTab(item.name)
-                  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                   item.onClick && item.onClick(e)
                 }}
                 className={cn(
@@ -91,7 +90,6 @@ export function NavBar({ items, className }: NavBarProps) {
             <Link
               key={item.name}
               href={item.url}
-              onClick={() => setActiveTab(item.name)}
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",
