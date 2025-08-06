@@ -1,7 +1,9 @@
+"use client"
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { ChevronRight } from "lucide-react"
 import { Header } from "../Header"
+import ScheduleModal from "./ScheduleModal"
 
 interface HeroSectionProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string
@@ -67,12 +69,13 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
       },
       description = "Our online driving school management system helps you manage students, instructors, schedules, and tests seamlessly — whether for theory or practical lessons. Simplify registrations, track progress, and deliver an engaging e-learning experience, all in one platform.",
       ctaText = "Check Schedule",
-      ctaHref = "/student",
       gridOptions,
       ...props
     },
     ref,
   ) => {
+    const [isScheduleModalOpen, setIsScheduleModalOpen] = React.useState(false);
+
     return (
       <div className={cn("relative", className)} ref={ref} {...props}>
         <div className="absolute top-0 z-[0] h-screen w-screen bg-purple-950/10 dark:bg-purple-950/10 bg-[radial-gradient(ellipse_20%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_20%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
@@ -91,7 +94,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
             
             <div className="flex items-center justify-center min-h-[calc(100vh-200px)] sm:min-h-0">
               <div className="space-y-5 max-w-3xl leading-0 lg:leading-5 mx-auto text-center">
-                <h2 className="text-4xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto md:text-6xl bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]">
+                <h2 className="text-4xl tracking-tighter font-geist text-gray-900 dark:text-white mx-auto md:text-6xl">
                   {subtitle.regular}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200">
                     {subtitle.gradient}
@@ -104,12 +107,12 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
                   <span className="relative inline-block overflow-hidden rounded-full p-[1.5px]">
                     <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
                     <div className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white dark:bg-gray-950 text-xs font-medium backdrop-blur-3xl">
-                      <a
-                        href={ctaHref}
+                      <button
+                        onClick={() => setIsScheduleModalOpen(true)}
                         className="inline-flex rounded-full text-center group items-center w-full justify-center bg-gradient-to-tr from-zinc-300/20 via-purple-400/30 to-transparent dark:from-zinc-300/5 dark:via-purple-400/20 text-gray-900 dark:text-white border-input border-[1px] hover:bg-gradient-to-tr hover:from-zinc-300/30 hover:via-purple-400/40 hover:to-transparent dark:hover:from-zinc-300/10 dark:hover:via-purple-400/30 transition-all sm:w-auto py-4 px-10"
                       >
                         {ctaText}
-                      </a>
+                      </button>
                     </div>
                   </span>
                 </div>
@@ -117,6 +120,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
             </div>
           </div>
         </section>
+        <ScheduleModal isOpen={isScheduleModalOpen} onClose={() => setIsScheduleModalOpen(false)} />
       </div>
     )
   },
