@@ -4,8 +4,8 @@ import HomeUI from "@/components/HomeUI";
 export default function Home() {
   return (
     <div className="">
-      {/* <FirstPageUI /> */}
       <HomeUI />
+      {/* <FirstPageUI /> */}
     </div>
   );
 }
